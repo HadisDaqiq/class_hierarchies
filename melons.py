@@ -1,7 +1,7 @@
 """Classes for melon orders."""
 
 from random import randint
-from datetime import time, date
+from datetime import time, date, datetime
 
 
 class AbstractMelonOrder:
@@ -25,10 +25,11 @@ class AbstractMelonOrder:
         # use date.weekday to return DOW
 
         base_price = randint(5, 10)
+        order_time = datetime.now()
 
         # check if during rush hour (need time and day of week)
-        # if date.weekday(datetime) <= 4 and 8 >= time.hour(datetime) < 11:
-        #     base_price += 4
+        if date.weekday(order_time) <= 4 and order_time.hour >= 8 and order_time.hour < 11:
+            base_price += 4
 
         return base_price
 
