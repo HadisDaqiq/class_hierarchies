@@ -28,7 +28,8 @@ class AbstractMelonOrder:
         order_time = datetime.now()
 
         # check if during rush hour (need time and day of week)
-        if date.weekday(order_time) <= 4 and order_time.hour >= 8 and order_time.hour < 11:
+        #if date.weekday(order_time) <= 4 and order_time.hour >= 8 and order_time.hour < 11:
+        if date.weekday(order_time) <= 4 and 8 <= order_time.hour < 11:
             base_price += 4
 
         return base_price
