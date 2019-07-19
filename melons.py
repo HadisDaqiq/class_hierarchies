@@ -1,5 +1,9 @@
 """Classes for melon orders."""
 
+from random import randint
+from datetime import time, date
+
+
 class AbstractMelonOrder:
     """Parent class for all melon orders."""
     shipped = False
@@ -10,12 +14,30 @@ class AbstractMelonOrder:
         self.species = species
         self.qty = qty
         
+    # def get_base_price, choose random num between 5 & 9
+    # use new base price in get_total
+    def get_base_price(self):
+        """return random baseprice 5-9"""
+
+        
+        # if Mon-Fri 8-11am, add $4
+        # use datetime.hour to check time
+        # use date.weekday to return DOW
+
+        base_price = randint(5, 10)
+
+        # check if during rush hour (need time and day of week)
+        # if date.weekday(datetime) <= 4 and 8 >= time.hour(datetime) < 11:
+        #     base_price += 4
+
+        return base_price
+
 
     # add methods get_total, mark_shipped
     def get_total(self):
         """Calculate price, including tax."""
 
-        base_price = 5
+        base_price = self.get_base_price()
 
         # if species "christmas" base*1.5
         if self.species.startswith("Christmas"):
